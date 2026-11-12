@@ -3,6 +3,6 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/remont/',
+  base: 'https://Kukoleva.github.io/remont/',
   plugins: [react(), tailwindcss()],
 })
