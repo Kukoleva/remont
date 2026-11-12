@@ -15,7 +15,14 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line/70 bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <a href="#top" className="font-display text-lg font-bold">
+        <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold">
+          <img
+            src={import.meta.env.BASE_URL + 'images/images (1)-1-1-square.jpeg'}
+            alt="Логотип Ремонт Гомель"
+            width={28}
+            height={28}
+            className="rounded-md object-cover shrink-0"
+          />
           Ремонт<span className="text-accent">Гомель</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex">

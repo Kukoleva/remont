@@ -40,14 +40,14 @@ export default function Home() {
                 <span className="text-accent">&#10003;</span> {site.hero.badge}
               </p>
               <h1 className="font-display text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
-                ремонт квартир в <span className="text-accent">Гомеле</span> под ключ
+                Ремонт квартир в <span className="text-accent">Гомеле</span> под ключ
               </h1>
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/70">
                 {site.hero.sub} делаем ремонт ванных комнат, укладку плитки, сантехнику и электрику под ключ.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
-                  href={wa('дравствуйте! ужен ремонт квартиры в омеле. Хочу бесплатный замер.')}
+                  href={wa('здравствуйте! нужен ремонт квартиры в Гомеле. Хочу бесплатный замер.')}
                   target="_blank"
                   rel="noreferrer"
                   className="rounded-full bg-accent px-8 py-4 text-base font-bold text-white shadow-xl shadow-accent/30 transition-all hover:scale-105 hover:bg-accent-dark"
@@ -64,7 +64,7 @@ export default function Home() {
             </div>
             <div className="photo-ph-dark relative aspect-[4/3] sm:aspect-[3/2] items-center justify-center rounded-3xl border border-white/10 overflow-hidden">
               <img
-                src="/images/images (1)-1-1-square.jpeg"
+                src={import.meta.env.BASE_URL + 'images/images (1)-1-1-square.jpeg'}
                 alt="Ремонт квартиры в Гомеле под ключ"
                 loading="eager"
                 decoding="async"
@@ -108,9 +108,9 @@ export default function Home() {
 
       {/* ===== услуги ===== */}
       <section id="services" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6">
-        <Head tag="услуги" title="Виды ремонтных работ в омеле" />
+        <Head tag="услуги" title="Виды ремонтных работ в Гомеле" />
         <p className="mb-8 text-center text-muted max-w-3xl mx-auto">
-          Выполняем косметический, капитальный и дизайнерский ремонт квартир под ключ в омеле и районе. Работы по укладке плитки, монтажу сантехники и электрике — с договором и гарантией.
+          Выполняем косметический, капитальный и дизайнерский ремонт квартир под ключ в Гомеле и районе. Работы по укладке плитки, монтажу сантехники и электрике — с договором и гарантией.
         </p>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {site.services.map((s) => (
