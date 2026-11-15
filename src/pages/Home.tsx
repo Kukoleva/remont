@@ -16,7 +16,7 @@ function Lightbox({ open, onClose, src, alt, title }: { open: boolean; onClose: 
   return (
     <>
       <div className="lightbox-overlay open" onClick={onClose} role="dialog" aria-modal="true" aria-label="просмотр фото работы">
-        <button onClick={onClose} aria-label="акрыть" className="lightbox-close">&#215;</button>
+        <button onClick={onClose} aria-label="открыть" className="lightbox-close">&#215;</button>
         <img src={src} alt={alt} className="lightbox-img" />
         <p className="lightbox-caption">{title}</p>
       </div>
@@ -70,8 +70,8 @@ export default function Home() {
                 decoding="async"
                 className="w-full h-full object-cover object-center"
               />
-              <span className="absolute inset-0 z-10 flex items-center justify-center text-sm font-bold uppercase tracking-[0.3em] text-white/60">
-                Ремонт который не бесит &#128522;
+              <span className="absolute inset-0 z-10 flex items-center justify-center text-sm font-bold text-yellow-400 bg-black/40 drop-shadow-md px-4 uppercase tracking-[0.3em]">
+                Дешевый ремонт - самый дорогой. Скупой платит дважды. Умный - нам!
               </span>
               <div className="absolute z-20 -bottom-4 -left-4 rounded-2xl border border-white/15 bg-dark-2/90 px-5 py-3 shadow-2xl backdrop-blur">
                 Гомель
