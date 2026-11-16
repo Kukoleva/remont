@@ -17,7 +17,7 @@ function Lightbox({ open, onClose, src, alt, title }: { open: boolean; onClose: 
     <>
       <div className="lightbox-overlay open" onClick={onClose} role="dialog" aria-modal="true" aria-label="просмотр фото работы">
         <button onClick={onClose} aria-label="открыть" className="lightbox-close">&#215;</button>
-        <img src={src} alt={alt} className="lightbox-img" />
+        <img src={src} alt={alt} width={800} height={600} className="lightbox-img" />
         <p className="lightbox-caption">{title}</p>
       </div>
     </>
@@ -66,8 +66,11 @@ export default function Home() {
               <img
                 src={import.meta.env.BASE_URL + 'images/images(1)-1-1-square.jpeg'}
                 alt="Ремонт квартиры в Гомеле под ключ"
+                width={800}
+                height={800}
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-cover object-center"
               />
               <span className="absolute inset-0 z-10 flex items-center justify-center text-sm font-bold text-yellow-400 bg-black/40 drop-shadow-md px-4 uppercase tracking-[0.3em]">
@@ -147,6 +150,8 @@ export default function Home() {
                   <img
                     src={imgSrc}
                     alt={w.title}
+                    width={800}
+                    height={600}
                     loading="lazy"
                     decoding="async"
                     className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
