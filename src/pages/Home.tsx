@@ -62,9 +62,9 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="photo-ph-dark relative aspect-[4/3] sm:aspect-[3/2] items-center justify-center rounded-3xl border border-white/10 overflow-hidden">
+            <div className="photo-ph relative aspect-[4/3] sm:aspect-[3/2] items-center justify-center rounded-3xl border border-white/10 overflow-hidden">
               <img
-                src={import.meta.env.BASE_URL + 'images/images (1)-1-1-square.jpeg'}
+                src={import.meta.env.BASE_URL + 'images/images(1)-1-1-square.jpeg'}
                 alt="Ремонт квартиры в Гомеле под ключ"
                 loading="eager"
                 decoding="async"

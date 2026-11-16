@@ -3,4 +3,4 @@ Allow: /
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /.vite/
-Sitemap: https://remont-gomel.by/sitemap.xml
+Sitemap: https://vdomeremont.by/sitemap.xml

@@ -17,7 +17,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2 font-display text-lg font-bold">
           <img
-            src={import.meta.env.BASE_URL + 'images/images (1)-1-1-square.jpeg'}
+            src={import.meta.env.BASE_URL + 'images/images(1)-1-1-square.jpeg'}
             alt="Логотип Ремонт Гомель"
             width={28}
             height={28}
