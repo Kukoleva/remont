@@ -1,0 +1,19 @@
+---
+import { site } from '../../data/site';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="process" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <SectionHeading tag="этапы" title="Как мы работаем" />
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+    {site.process.map((p) => (
+      <div class="relative rounded-2xl border border-line bg-card p-6 pt-8">
+        <span class="absolute -top-5 left-6 flex h-10 w-10 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-white shadow-lg shadow-accent/30">
+          {p.num}
+        </span>
+        <h3 class="mt-2 font-bold">{p.title}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted">{p.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

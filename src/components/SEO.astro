@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  canonical?: string;
+  jsonLd?: Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-default.jpeg',
+  type = 'website',
+  canonical,
+  jsonLd = [],
+} = Astro.props;
+
+const canonicalUrl = canonical
+  ? new URL(canonical, Astro.site ?? Astro.url.origin).toString()
+  : new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+
+const ogImage = new URL(image, Astro.site ?? Astro.url.origin).toString();
+const siteName = 'РемонтГомель';
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="800" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="ru_RU" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- JSON-LD -->
+{jsonLd.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

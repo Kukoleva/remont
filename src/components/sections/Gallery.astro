@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import work1 from '../../assets/images/work-1.png';
+import work2 from '../../assets/images/work-2.jpeg';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Item {
+  title: string;
+  alt: string;
+  tag: string;
+}
+
+interface Props {
+  items: Item[];
+  title?: string;
+  tag?: string;
+}
+
+const { items, title = 'Фото выполненных работ', tag = 'портфолио' } = Astro.props;
+
+const images = [
+  { src: work1, w: 800, h: 600 },
+  { src: work2, w: 800, h: 600 },
+];
+---
+
+<section id="works" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <SectionHeading tag={tag} title={title} />
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {items.map((it, i) => {
+      const img = images[i];
+      return (
+        <figure class="group relative overflow-hidden rounded-2xl border border-line bg-card">
+          {img ? (
+            <Image
+              src={img.src}
+              alt={it.alt}
+              width={img.w}
+              height={img.h}
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div class="photo-ph flex aspect-[4/3] w-full items-center justify-center">
+              <span class="text-xs font-bold uppercase tracking-[0.3em] text-muted/70">фото</span>
+            </div>
+          )}
+          <figcaption class="flex items-center justify-between gap-3 px-5 py-4">
+            <span class="text-sm font-bold">{it.title}</span>
+            <span class="rounded-full bg-accent-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-dark">
+              {it.tag}
+            </span>
+          </figcaption>
+        </figure>
+      );
+    })}
+  </div>
+</section>

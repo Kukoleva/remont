@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = 'Блог о ремонте — советы мастера РемонтГомель';
+const description =
+  'Статьи и советы о ремонте квартир в Гомеле: цены, выбор плитки, косметический или капитальный ремонт. Пишет практикующий мастер.';
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="border-b border-line bg-dark pt-16 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <nav aria-label="Хлебные крошки" class="mb-4 flex items-center gap-2 text-sm text-white/50">
+        <a href="/" class="transition-colors hover:text-accent">Главная</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white/80">Блог</span>
+      </nav>
+      <h1 class="font-display text-3xl font-bold sm:text-5xl">Блог</h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => (
+        <a
+          href={`/blog/${post.id}/`}
+          class="group rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/10"
+        >
+          <time datetime={post.data.pubDate.toISOString()} class="text-xs uppercase tracking-wider text-muted">
+            {post.data.pubDate.toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <h2 class="mt-3 text-lg font-extrabold leading-snug transition-colors group-hover:text-accent">
+            {post.data.title}
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

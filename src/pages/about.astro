@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/images/hero.jpeg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import CTA from '../components/sections/CTA.astro';
+import { site } from '../data/site';
+
+const title = 'О мастере — ремонт квартир в Гомеле';
+const description =
+  'Частный мастер по ремонту квартир в Гомеле. Работаю по договору, даю гарантию 3 года, бесплатный выезд на замер. Ремонт, отделка, сантехника, электрика.';
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Мастер по ремонту квартир',
+  telephone: site.contacts.phone,
+  url: site.url,
+  worksFor: { '@type': 'Organization', name: site.brand },
+  address: { '@type': 'PostalAddress', addressLocality: 'Гомель', addressCountry: 'BY' },
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={[personJsonLd]}>
+  <section class="border-b border-line bg-dark pt-16 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <nav aria-label="Хлебные крошки" class="mb-4 flex items-center gap-2 text-sm text-white/50">
+        <a href="/" class="transition-colors hover:text-accent">Главная</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white/80">О мастере</span>
+      </nav>
+      <h1 class="font-display text-3xl font-bold sm:text-5xl">О мастере</h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+      <div class="space-y-4 leading-relaxed text-muted">
+        <p class="text-lg font-semibold text-fg">
+          Здравствуйте. Занимаюсь ремонтом квартир в Гомеле и районе под ключ.
+        </p>
+        <p>
+          Выполняем косметический, капитальный и дизайнерский ремонт, а также отдельные виды работ:
+          укладку плитки, сантехнику, электрику, штукатурку и малярные работы. Работаю по договору с
+          фиксированной сметой — цена и сроки не меняются в процессе.
+        </p>
+        <p>
+          Бесплатно выезжаю на замер по Гомелю и району, считаю точную смету и даю гарантию 3 года на
+          все выполненные работы. На каждом этапе присылаю фотоотчёты.
+        </p>
+        <ul class="space-y-2 pt-2">
+          <li class="flex items-start gap-3">
+            <span class="text-accent">✓</span> Работаем по договору как ИП
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent">✓</span> Гарантия 3 года
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent">✓</span> Бесплатный выезд и смета
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent">✓</span> Помощь с закупкой материалов
+          </li>
+        </ul>
+      </div>
+      <div class="overflow-hidden rounded-3xl border border-line">
+        <Image
+          src={heroImg}
+          alt="Мастер по ремонту квартир в Гомеле"
+          width={800}
+          height={800}
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <Reviews />
+  <CTA />
+</BaseLayout>

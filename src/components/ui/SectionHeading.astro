@@ -1,0 +1,17 @@
+---
+interface Props {
+  tag?: string;
+  title: string;
+}
+
+const { tag, title } = Astro.props;
+---
+
+<div class="mb-12 text-center">
+  {tag && (
+    <p class="mb-3 inline-block rounded-full bg-accent-soft px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-dark">
+      {tag}
+    </p>
+  )}
+  <h2 class="font-display text-3xl font-bold sm:text-4xl">{title}</h2>
+</div>

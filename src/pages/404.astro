@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Страница не найдена — 404 | РемонтГомель"
+  description="Запрошенная страница не найдена. Перейдите на главную страницу сайта «РемонтГомель» — ремонт квартир в Гомеле."
+>
+  <section class="flex min-h-[60vh] items-center justify-center pt-16 text-center">
+    <div class="px-4">
+      <p class="font-display text-7xl font-bold text-accent">404</p>
+      <h1 class="mt-4 font-display text-2xl font-bold">Страница не найдена</h1>
+      <p class="mx-auto mt-3 max-w-md text-muted">
+        Такой страницы нет. Возможно, она была удалена или адрес указан неверно.
+      </p>
+      <a
+        href="/"
+        class="mt-8 inline-block rounded-full bg-accent px-8 py-4 text-base font-bold text-white transition-colors hover:bg-accent-dark"
+      >
+        На главную
+      </a>
+    </div>
+  </section>
+</BaseLayout>

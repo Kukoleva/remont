@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../../assets/images/hero.jpeg';
+import { site, wa } from '../../data/site';
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative overflow-hidden bg-dark pt-16 text-white">
+  <div class="pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-accent/20 blur-[120px]" />
+  <div class="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
+  <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 backdrop-blur">
+          <span class="text-accent">&#10003;</span> Работаю по договору · гарантия 3 года
+        </p>
+        <h1 class="font-display text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
+          Ремонт квартир в <span class="text-accent">Гомеле</span> под ключ
+        </h1>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/70">
+          От косметического до дизайнерского — качественно, в срок и без скрытых доплат. Делаю ремонт
+          ванных комнат, укладку плитки, сантехнику и электрику под ключ.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <Button href={wa('Здравствуйте! Нужен ремонт квартиры в Гомеле. Хочу бесплатный замер.')} target="_blank">
+            Бесплатный замер
+          </Button>
+          <Button href="#works" variant="outline">
+            Фото работ
+          </Button>
+        </div>
+      </div>
+      <div class="photo-ph relative aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl border border-white/10 sm:aspect-[3/2]">
+        <Image
+          src={heroImg}
+          alt="Ремонт квартиры в Гомеле под ключ"
+          width={800}
+          height={800}
+          loading="eager"
+          decoding="async"
+          class="h-full w-full object-cover object-center"
+        />
+        <span class="absolute inset-0 z-10 flex items-center justify-center bg-black/40 px-4 text-center text-sm font-bold uppercase tracking-[0.3em] text-yellow-400 drop-shadow-md">
+          Дешёвый ремонт — самый дорогой. Скупой платит дважды.
+        </span>
+        <div class="absolute -bottom-4 -left-4 z-20 rounded-2xl border border-white/15 bg-dark-2/90 px-5 py-3 shadow-2xl backdrop-blur">
+          Гомель
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
+      {site.stats.map(([v, l]) => (
+        <div class="bg-dark px-6 py-5">
+          <p class="font-display text-2xl font-bold text-accent sm:text-3xl">{v}</p>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-white/50">{l}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

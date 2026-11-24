@@ -1,0 +1,18 @@
+---
+import { getEntry, render } from 'astro:content';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import ServiceSections from '../components/ServiceSections.astro';
+import { serviceDetails } from '../data/services';
+
+const slug = 'remont-kvartir';
+const entry = await getEntry('services', slug);
+if (!entry) throw new Error(`Unknown service: ${slug}`);
+
+const { title, description, h1, label, intro } = entry.data;
+const { Content } = await render(entry);
+const details = serviceDetails[slug];
+---
+
+<ServiceLayout title={title} description={description} h1={h1}>
+  <ServiceSections service={{ label, intro }} details={details} content={Content} />
+</ServiceLayout>

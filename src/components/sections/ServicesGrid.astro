@@ -1,0 +1,38 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Card {
+  href: string;
+  label: string;
+  desc: string;
+  price: string;
+  icon: string;
+}
+
+interface Props {
+  services: Card[];
+}
+
+const { services } = Astro.props;
+---
+
+<section id="services" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <SectionHeading tag="услуги" title="Виды ремонтных работ в Гомеле" />
+  <p class="mx-auto mb-8 max-w-3xl text-center text-muted">
+    Выполняем косметический, капитальный и дизайнерский ремонт квартир под ключ в Гомеле и районе.
+    Работы по укладке плитки, монтажу сантехники и электрике — с договором и гарантией 3 года.
+  </p>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {services.map((s) => (
+      <a
+        href={s.href}
+        class="group rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/10"
+      >
+        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-2xl">{s.icon}</div>
+        <h3 class="text-lg font-extrabold">{s.label}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-muted">{s.desc}</p>
+        <p class="mt-4 font-display text-base font-bold text-accent">{s.price}</p>
+      </a>
+    ))}
+  </div>
+</section>

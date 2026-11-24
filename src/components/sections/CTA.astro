@@ -1,0 +1,39 @@
+---
+import { site } from '../../data/site';
+import ContactForm from '../ContactForm.tsx';
+---
+
+<section class="bg-dark text-white">
+  <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-accent">Свяжитесь со мной</p>
+        <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">Бесплатный замер</h2>
+        <p class="mt-5 max-w-md text-white/60">
+          Оставьте заявку — приеду, посчитаю и назову точную цену. Это ни к чему не обязывает.
+        </p>
+        <div class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 sm:grid-cols-2">
+          <a href={site.contacts.phoneHref} class="bg-dark-2 px-6 py-6 transition-colors hover:bg-dark">
+            <p class="text-xs uppercase tracking-widest text-white/50">Телефон</p>
+            <p class="mt-2 font-bold text-accent">{site.contacts.phone}</p>
+          </a>
+          <a href={site.contacts.telegram} target="_blank" rel="noreferrer" class="bg-dark-2 px-6 py-6 transition-colors hover:bg-dark">
+            <p class="text-xs uppercase tracking-widest text-white/50">Telegram</p>
+            <p class="mt-2 font-bold text-accent">{site.contacts.telegramHandle}</p>
+          </a>
+          <a href={site.contacts.whatsapp} target="_blank" rel="noreferrer" class="bg-dark-2 px-6 py-6 transition-colors hover:bg-dark">
+            <p class="text-xs uppercase tracking-widest text-white/50">WhatsApp</p>
+            <p class="mt-2 font-bold text-accent">{site.contacts.phone}</p>
+          </a>
+          <a href={site.contacts.viber} target="_blank" rel="noreferrer" class="bg-dark-2 px-6 py-6 transition-colors hover:bg-dark">
+            <p class="text-xs uppercase tracking-widest text-white/50">Viber</p>
+            <p class="mt-2 font-bold text-accent">{site.contacts.phone}</p>
+          </a>
+        </div>
+      </div>
+      <div>
+        <ContactForm client:load />
+      </div>
+    </div>
+  </div>
+</section>

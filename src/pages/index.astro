@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ServicesGrid from '../components/sections/ServicesGrid.astro';
+import Process from '../components/sections/Process.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import CTA from '../components/sections/CTA.astro';
+import Calculator from '../components/Calculator.tsx';
+import { site } from '../data/site';
+
+const allServices = await getCollection('services');
+const services = allServices
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((s) => ({
+    href: `/${s.id}/`,
+    label: s.data.label,
+    desc: s.data.short,
+    price: s.data.priceFrom,
+    icon: s.data.icon,
+  }));
+
+const title =
+  'Ремонт квартир в Гомеле под ключ — ремонт ванных, укладка плитки, сантехника, электрика';
+const description =
+  'Ремонт квартир в Гомеле: косметический, капитальный и дизайнерский ремонт под ключ. Ремонт ванных комнат, укладка плитки, сантехника, электрика. Договор, гарантия 3 года, бесплатный замер.';
+
+const businessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${site.url}/#business`,
+  name: site.brand,
+  image: `${site.url}/images/og-default.jpeg`,
+  telephone: site.contacts.phone,
+  url: site.url,
+  priceRange: 'BYN',
+  address: { '@type': 'PostalAddress', addressLocality: 'Гомель', addressCountry: 'BY' },
+  areaServed: { '@type': 'City', name: 'Гомель' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: site.reviews.length },
+  serviceType: [
+    'ремонт квартир',
+    'ремонт ванных',
+    'дизайнерский ремонт',
+    'укладка плитки',
+    'сантехника',
+    'электрика',
+    'ремонт под ключ',
+  ],
+};
+
+const worksGallery = [
+  { title: 'Гостиная', alt: 'Ремонт квартиры в Гомеле под ключ — гостиная', tag: 'Под ключ' },
+  { title: 'Комната', alt: 'Косметический ремонт квартиры в Гомеле', tag: 'Косметический' },
+  { title: 'Ваш объект', alt: 'Заказать ремонт квартиры в Гомеле', tag: 'Ваш объект' },
+];
+---
+
+<BaseLayout title={title} description={description} image="/images/og-default.jpeg" jsonLd={[businessJsonLd]}>
+  <main id="top">
+    <Hero />
+
+    <!-- Бегущая строка -->
+    <div class="marquee overflow-hidden border-b border-line bg-accent py-3.5">
+      <div class="marquee-track">
+        {[0, 1].map((i) => (
+          <div class="flex shrink-0 items-center">
+            {['Ремонт квартир', 'Ремонт ванных', 'Дизайнерский ремонт', 'Укладка плитки', 'Сантехника', 'Электрика', 'Косметический ремонт', 'Капитальный ремонт', 'Ремонт под ключ'].map(
+              (t) => (
+                <span class="mx-6 text-sm font-extrabold uppercase tracking-widest text-white">
+                  {t} <span class="ml-6 text-white/60">&#10030;</span>
+                </span>
+              ),
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <ServicesGrid services={services} />
+
+    <Calculator client:load />
+
+    <Gallery items={worksGallery} />
+
+    <Process />
+    <Reviews />
+    <FAQ items={site.faq} />
+    <CTA />
+  </main>
+</BaseLayout>

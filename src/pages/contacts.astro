@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/sections/CTA.astro';
+import { site } from '../data/site';
+
+const title = 'Контакты — ремонт квартир в Гомеле, телефон +375 (25) 666-94-09';
+const description =
+  'Контакты мастера по ремонту квартир в Гомеле: телефон, WhatsApp, Telegram, Viber. Бесплатный выезд на замер по Гомелю и району. ИП, договор, гарантия 3 года.';
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${site.url}/#business`,
+  name: site.brand,
+  image: `${site.url}/images/og-default.jpeg`,
+  telephone: site.contacts.phone,
+  url: site.url,
+  priceRange: 'BYN',
+  address: { '@type': 'PostalAddress', addressLocality: 'Гомель', addressCountry: 'BY' },
+  areaServed: { '@type': 'City', name: 'Гомель' },
+  openingHours: 'Mo-Su 09:00-20:00',
+};
+
+const contacts = [
+  { label: 'Телефон', value: site.contacts.phone, href: site.contacts.phoneHref },
+  { label: 'WhatsApp', value: site.contacts.phone, href: site.contacts.whatsapp },
+  { label: 'Telegram', value: site.contacts.telegramHandle, href: site.contacts.telegram },
+  { label: 'Viber', value: site.contacts.phone, href: site.contacts.viber },
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={[contactJsonLd]}>
+  <section class="border-b border-line bg-dark pt-16 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      <nav aria-label="Хлебные крошки" class="mb-4 flex items-center gap-2 text-sm text-white/50">
+        <a href="/" class="transition-colors hover:text-accent">Главная</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white/80">Контакты</span>
+      </nav>
+      <h1 class="font-display text-3xl font-bold sm:text-5xl">Контакты</h1>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+    <div class="grid gap-6 lg:grid-cols-3">
+      <div class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:col-span-2">
+        {contacts.map((c) => (
+          <a href={c.href} target="_blank" rel="noreferrer" class="bg-card p-6 transition-colors hover:bg-dark-2">
+            <p class="text-xs uppercase tracking-widest text-muted">{c.label}</p>
+            <p class="mt-2 font-bold text-accent">{c.value}</p>
+          </a>
+        ))}
+      </div>
+      <div class="rounded-2xl border border-line bg-card p-6">
+        <h2 class="font-display text-xl font-bold">График и зона работы</h2>
+        <ul class="mt-4 space-y-3 text-sm text-muted">
+          <li>📍 Гомель и район — выезд на замер бесплатно</li>
+          <li>🕘 Пн–Вс: 9:00–20:00</li>
+          <li>📄 Работаю официально как ИП — по договору</li>
+          <li>🛡️ Гарантия 3 года на все работы</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

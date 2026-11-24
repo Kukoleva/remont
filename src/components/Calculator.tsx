@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { site, wa } from '../site';
+import { site, wa } from '../data/site';
 
 type Qty = Record<string, number>;
 
@@ -106,7 +106,6 @@ export default function Calculator() {
                   </button>
                   {open && (
                     <div className="border-t border-line">
-                      {/* Заголовок таблицы */}
                       <div className="hidden grid-cols-[1fr_90px_110px_110px] gap-3 border-b border-line bg-card px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-muted sm:grid">
                         <span>Вид работ</span>
                         <span className="text-right">Цена</span>
@@ -154,8 +153,6 @@ export default function Calculator() {
               );
             })}
           </div>
-
-          {/* ===== Смета ===== */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <div className="overflow-hidden rounded-2xl border border-line bg-dark text-white shadow-2xl">
               <div className="border-b border-white/10 px-6 py-5">
@@ -166,9 +163,7 @@ export default function Calculator() {
               </div>
               <div className="max-h-[420px] overflow-y-auto px-6 py-4">
                 {selected.length === 0 ? (
-                  <p className="py-6 text-center text-sm text-white/40">
-                      заполнить объем работ
-                  </p>
+                  <p className="py-6 text-center text-sm text-white/40">заполнить объем работ</p>
                 ) : (
                   selected.map((r) => (
                     <div key={r.name} className="border-b border-white/10 py-3 last:border-0">
